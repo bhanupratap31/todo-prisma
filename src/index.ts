@@ -16,23 +16,32 @@ const prisma = new PrismaClient();
 // insertUser("bhanups@gmail.com", "bhanu", "Bhanu", "Pratap");
 
 
-interface UpdateParams{
-    firstName: string;
-    lastName: string;
-}
+// interface UpdateParams{
+//     firstName: string;
+//     lastName: string;
+// }
 
-async function updateUser(username: string, {
-    firstName,
-    lastName
-}: UpdateParams){
-    const res = await prisma.user.update({
-        where: {email: username}, 
-        data: {
-            firstName, 
-            lastName
-        }
+// async function updateUser(username: string, {
+//     firstName,
+//     lastName
+// }: UpdateParams){
+//     const res = await prisma.user.update({
+//         where: {email: username}, 
+//         data: {
+//             firstName, 
+//             lastName
+//         }
+//     })
+//     console.log(res);
+// }
+
+// updateUser("bhanups@gmail.com", {firstName: "bhanups", lastName: "prataps"});
+
+async function deleteUser(username: string){
+    const res = await prisma.user.delete({
+        where: {email: username}
     })
-    console.log(res);
+    console.log(res); 
 }
 
-updateUser("bhanups@gmail.com", {firstName: "bhanups", lastName: "prataps"});
+deleteUser("bhanups@gmail.com");
